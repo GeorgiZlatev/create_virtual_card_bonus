@@ -1,6 +1,10 @@
 <?php
 // Include config file
 require_once "config.php";
+require_once "config_pg.php";
+
+
+        // END PG
  
 // Define variables and initialize with empty values
 $username = $password = $confirm_password = "";
@@ -8,7 +12,17 @@ $username_err = $password_err = $confirm_password_err = "";
  
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
- 
+
+    // PostgreSQL quary
+    
+        $query = "
+            INSERT INTO public.cards (id, cardnum, begindate, enddate, password, discountsid, blocked, name) VALUES ('".$id."', '".$id_number."', '".$begindate."', '".$enddate."', '', '1', 'false', '');
+            ";
+
+        $result = pg_query($conn, $query);
+
+
+
     // Validate username
     if(empty(trim($_POST["username"]))){
         $username_err = "Please enter a username.";
@@ -67,7 +81,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
         
         // Prepare an insert statement
-        $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
+        $sql = "INSERT INTO users (username, password, barcode) VALUES (?, ?, '".$id_number."')";
          
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
