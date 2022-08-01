@@ -1,6 +1,6 @@
-# create_virtual_card_bonus
+# Create virtual card/bonus
 
-Update 
+Update / 01.08.2022
 - add colum barcode on DB.
 - add index.php file.
 - add virtual card on welcome.php
