@@ -27,7 +27,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 </head>
 <body>
     <h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to our site.</h1>
-          <h3>Твоя номер на карта: </h3>
+          <h3>It's your card number: </h3>
       <?php echo "<img class='img_barcode' alt='testing' src='./barcode.php?codetype=Code39&size=75&text=".$barcode."&print=true'/>"; ?> 
       <script type="text/javascript">
 window.addEventListener('devicelight', function(e) {
